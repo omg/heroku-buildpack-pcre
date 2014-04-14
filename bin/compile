@@ -19,6 +19,6 @@ if [ ! -d "pcre-8.35" ]; then
 	make install
 else
 	cd pcre-8.35
-	make install
+	make install >/dev/null
 fi
 
