@@ -14,5 +14,5 @@ echo "-----> Installing PCRE library"
 curl --silent --max-time 60 --location "$PCRE_TARBALL" | tar -xj
 
 cd pcre-8.35
-./configure --enable-jit --prefix="$BUILD_DIR/.heroku/vendor"
+./configure --enable-pcre16 --enable-pcre32 --enable-utf --enable-jit --prefix="$BUILD_DIR/.heroku/vendor"
 make install
