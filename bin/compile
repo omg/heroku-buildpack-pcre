@@ -3,12 +3,15 @@
 
 set -e
 
-PCRE_TARBALL=https://s3-eu-west-1.amazonaws.com/midgard-heroku/pcre.tar.gz
+PCRE_TARBALL=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.bz2
 TARGET_DIR=$HOME
 BUILD_DIR=$1
 CACHE_DIR=$2
 
 cd $BUILD_DIR
 
-echo "-----> Installing pcre library"
-curl --silent --max-time 60 --location "$PCRE_TARBALL" | tar xz
+echo "-----> Installing PCRE library"
+curl --max-time 60 --location "$PCRE_TARBALL" | tar xz
+
+export LDFLAGS="$LDFLAGS -L$BUILD_DIR/pcre/lib"
+export CFLAGS="$CFLAGS -I-L$BUILD_DIR/pcre/include"
