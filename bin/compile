@@ -13,5 +13,6 @@ cd $CACHE_DIR
 echo "-----> Installing PCRE library"
 curl --silent --max-time 60 --location "$PCRE_TARBALL" | tar -xj
 
+cd pcre-8.35
 ./configure --prefix="$BUILD_DIR/.heroku/vendor"
 make install
