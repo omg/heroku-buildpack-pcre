@@ -11,8 +11,14 @@ CACHE_DIR=$2
 cd $CACHE_DIR
 
 echo "-----> Installing PCRE library"
-curl --silent --max-time 60 --location "$PCRE_TARBALL" | tar -xj
 
-cd pcre-8.35
-./configure --enable-pcre16 --enable-pcre32 --enable-utf --enable-jit --enable-unicode-properties --prefix="$BUILD_DIR/.heroku/vendor"
-make install
+if [ ! -d "pcre-8.35" ]; then
+	curl --silent --max-time 60 --location "$PCRE_TARBALL" | tar -xj
+	cd pcre-8.35
+	./configure --enable-pcre16 --enable-pcre32 --enable-utf --enable-jit --enable-unicode-properties --prefix="$BUILD_DIR/.heroku/vendor"
+	make install
+else
+	cd pcre-8.35
+	make install
+fi
+
