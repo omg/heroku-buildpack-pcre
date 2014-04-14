@@ -11,7 +11,7 @@ CACHE_DIR=$2
 cd $BUILD_DIR
 
 echo "-----> Installing PCRE library"
-curl --max-time 60 --location "$PCRE_TARBALL" | tar -xj
+curl --silent --max-time 60 --location "$PCRE_TARBALL" | tar -xj
 
 export LDFLAGS="$LDFLAGS -L$BUILD_DIR/pcre/lib"
 export CFLAGS="$CFLAGS -I-L$BUILD_DIR/pcre/include"
